@@ -2215,7 +2215,7 @@ new Date(2021, 0)
 实例方法：
 
 + 基础：
-  + getDate()、getDay()（返回星期几：0~6）、getMonth()、<u>getFullYear()</u>
+  + getDate()、getDay()（返回星期几：0~6）、getMonth()、get<u>Full</u>Year()
   + getHours()、getMinutes()、getSeconds()、getMilliseconds()
   + 以上除了day值外，都有对应的set的函数
 + `getTime()`、`valueOf()`：两者功能相同，以数值形式返回毫秒数
@@ -2232,6 +2232,21 @@ date.toString()			// "Mon Jun 05 2023 14:25:43 GMT+0800 (中国标准时间)"
 date.toLocaleString()	// "2023/6/5 14:25:43" 
 date.toUTCString()		// "Mon, 05 Jun 2023 06:25:43 GMT"
 ```
+
+## JavaScript-navigator
+
+> navigator /ˈnævɪɡeɪtər/ *n. 领航员*
+
+`Navigator` 接口表示用户代理的状态和标识。它允许脚本查询它和注册自己进行一些活动
+
+通过只读属性[`window.navigator`](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/navigator)，可以用于获取运行当前代码应用程序的相关信息
+
+一些常用的属性：
+
++ [`navigator.geolocation`](https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/geolocation) ：设备的地理位置
++ [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent)：浏览器的用户代理
++ [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine)：浏览器是否联网
+  + 当该值发生改变时（网络情况发生变化），将会触发`online`或`offline`事件
 
 # jQuery
 
