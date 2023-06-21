@@ -9,7 +9,7 @@
 ```bash
 # 基础
 git init				# 初始化某目录为仓库
-git add <file>			# 添加工作区内容到缓存区，可多次使用添加多个文件；使用'.'符号来添加全部已更改
+git add <file>			# 添加工作区内容到暂存区，可多次使用添加多个文件；使用'.'符号来添加全部已更改
 
 # 文件
 git commit -m <message>	# 暂存区对版本库进行一次提交，-m后添加此次提交说明
@@ -172,7 +172,7 @@ git checkout <file-name>	# 旧版本
 git restore <file-name>		# 新版本
 ```
 
-②**已add，未commit时：**暂存区回退到和最新版本库一致，再执行上一步回退工作区
+②**已add，未commit时：**暂存区回退到和最新版本库一致，暂存区的修改会被放回工作区；如有需要可以再执行上一步回退工作区
 
 ```bash
 git reset HEAD <file-name>			# 旧版本
