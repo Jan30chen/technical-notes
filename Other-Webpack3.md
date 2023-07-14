@@ -4,23 +4,14 @@
 
 webpack是将项目中各种各样的静态资源文件视为模板,然后打包到最后的输出文件中
 
-<img src="http://stepimagewm.how2j.cn/7949.png" style="zoom: 100%;" />
+<img src="http://stepimagewm.how2j.cn/7949.png" style="zoom: 50%;" />
 
 ## 过程
 
-### 安装
-
 ```CMD
-npm install -g webpack@1.13.2 #全局安装并规定版本
+npm install -g webpack@1.13.2 # 全局安装并规定版本
+webpack a.js bundle.js # 运行
 ```
-
-### 运行
-
-```
-webpack a.js bundle.js
-```
-
-### 运用
 
 ```html
 <html>
@@ -30,23 +21,19 @@ webpack a.js bundle.js
 </html>
 ```
 
-### 命令行运行
-
 > webpack.config.js 配置文件
 
 ```javascript
 module.exports = {
-  entry: './a.js', #输入文件名
+  entry: './a.js', // 输入文件名
   output: {
-    filename: 'bundle.js' #输出文件名
+    filename: 'bundle.js' // 输出文件名
   }
 };
 ```
 
-> CMD
-
 ```cmd
-webpack #不加参数直接运行(在当前目录下)
+webpack # 在当前目录下的命令行页面，不加参数直接运行
 ```
 
 ### webpack-dev-server
@@ -76,7 +63,7 @@ module.exports = {
         filename: 'bundle.js'
     },
     devServer: {
-        port:8088 #端口号
+        port:8088 // 端口号
     }
 }
 ```
@@ -115,10 +102,6 @@ npm link webpack
 ```
 
 之后重新启动就可以了
-
-#### html和css监视更新
-
-暂缺
 
 ### npm启动
 
@@ -199,7 +182,7 @@ module.exports = {
 
 以npm方式运行测试
 
-### 使用 BABEL-Loader(ES6到ES5适配器)
+### ES6向下兼容ES5
 
 因为 ES6 标准推出时间还不够久，所以并不是所有的浏览器都支持 ES6 的运行。 因此，需要把 ES6 的 javascript 代码，转换为 ES5 标准的代码，以期能够在当下浏览器上兼容运行。
 
@@ -318,6 +301,7 @@ module.exports = {
 
 + HtmlWebpackPlugin
 + ExtractTextPlugin
++ ProvidePlugin
 + Image-loader 
 
 ## Loader
