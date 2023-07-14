@@ -2248,6 +2248,33 @@ date.toUTCString()		// "Mon, 05 Jun 2023 06:25:43 GMT"
 + [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine)：浏览器是否联网
   + 当该值发生改变时（网络情况发生变化），将会触发`online`或`offline`事件
 
+## JavaScript-进制
+
+进制包括如下几种，以不同的前缀而区分：
+
++ 十进制：无前缀
++ 十六进制：前缀为`0x`
++ 二进制：前缀为`0b`（ES6）
++ 八进制：前缀为`0o`（ES6）
+
+注：前缀不区分大小写
+
+注2：**非严格模式**下，前缀是`0`且后续数字只有0~7时，也被视为八进制，否则视为十进制
+
+### 转化
+
++ [`parseInt(string, radix);`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt)：解析字符串返回十进制整数
+  + `radix` 是 2-36 之间的整数，表示输入值的进制
+  + 输入值<u>不需要</u>前缀
++ `Number()`：将字符串转为数字，<u>需要</u>前缀
++ `+`：可以直接置于字符串前转为数字
++ `Number.prototype.toString(radix)`：将**数字**转换成对应进制的**字符串**
+  + `radix` 是 2-36 之间的整数，默认为10
+
+十进制小数转化为二进制时，会发生无限循环，被截取后发生精度丢失；
+
+常见的有：`0.1 + 0.2 = 0.30000000000000004`
+
 # jQuery
 
 ## jQuery-选择器

@@ -35,6 +35,8 @@ npm upgrade <packageName>	# 更新
 
 ### 查看
 
+> 参见：[npm ls 命令的基本使用](https://www.cnblogs.com/cxys100/p/16003476.html)
+
 ```bash
 npm show <pack-name>						# 包最新线上版本信息
 npm view <pack-name>						# 包信息
