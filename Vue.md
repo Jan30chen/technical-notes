@@ -26,7 +26,7 @@ MVVM通过数据双向绑定让数据自动地双向同步
 
 ## 常用指令
 
-![](D:\坚果云\MD笔记\MDimg\0b46ec8b051246858211c4c7ec129fb3~tplv-k3u1fbpfcp-zoom-in-crop-mark_4536_0_0_0.webp)
+![](.\MDimg\0b46ec8b051246858211c4c7ec129fb3~tplv-k3u1fbpfcp-zoom-in-crop-mark_4536_0_0_0.webp)
 
 + `v-model`：实现表单控件和数据的双向绑定
 + `v-html`：更新元素的`innerHtml`
@@ -523,11 +523,161 @@ this.$emit('update:father-num',100);  //有效
 + 特殊attribute
 + 内置组件
 
+## VUE CLI配置
+
+### publicPath
+
++ Type: `String`
++ Default: `'/'`
+
+部署应用包时的基本URL。如果应用部署在子路径上，使用该值指定子路径；
+
+用法相当于webpack的[`output.publicPath`](https://webpack.docschina.org/configuration/output/#outputpublicpath)，但不要直接修改webpack的该值
+
+如果被设置为`''`或`'./'`，则所有的资源都会被链接为相对路径
+
+### outputDir
+
++ Type: `String`
++ Default: `'dist'`
+
+构建输出的文件目录，如果已存在，则内容会先被清除（构建时使用`--no-clean`关闭该行为）
+
+### pages
+
+- Type: `Object`
+- Default: `undefined`
+
+multi-page 模式下，为每个 page 配置对应的 Javascript 入口文件
+
+### devServer
+
++ Type: `Object`
+
+对应[ ` webpack-dev-server`](https://webpack.docschina.org/configuration/dev-server/) 的选项
+
+#### devServer.port
+
+##### target
+
+当后端开发服务不处于同一域，可以将URL代理出去
+
+```javascript
+// webpack.config.js
+module.exports = {
+  //...
+  devServer: {
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
+  },
+};
+```
+
+如上配置，现在对 `/api/users` 的请求会将请求代理到 `http://localhost:3000/api/users`
+
+##### pathRewrite
+
+可以重写路径，此时会代理到 `http://localhost:3000/users`
+
+```js
+proxy: {
+  '/api': {
+    target: 'http://localhost:3000',
+    pathRewrite: { '^/api': '' },
+  },
+},
+```
+
+##### secure
+
+在https上运行且证书无效的后端服务器，默认情况下不会被访问；关闭`secure`属性以访问
+
+```javascript
+proxy: {
+  '/api': {
+    target: 'https://other-server.example.com',
+    secure: false,
+  },
+},
+```
+
+##### bypass
+
+有选择性的代理，可以使用`bypass`指定一个函数。
+
+函数接收`request`, `response`和代理配置，返回：
+
++ `null`或`undefined`：继续进行代理
++ `false`：将请求置为404
++ 路径：返回一个提供服务的另一个路径
+
+```javascript
+proxy: {
+	'/api': {
+        target: 'http://localhost:3000',
+        bypass: function (req, res, proxyOptions) {
+            if (req.headers.accept.indexOf('html') !== -1) {
+                console.log('Skipping proxy for browser request.');
+                return '/index.html';
+            }
+    }
+}
+```
+
+##### context
+
+将多个特定路径代理到同一目标，则可以使用一个或多个带有 `context` 属性的对象的**数组**：
+
+注意是将 proxy 置为数组
+
+```javascript
+proxy: [
+	{
+		context: ['/auth', '/api'],
+		target: 'http://localhost:3000',
+	},
+],
+```
+
+##### changeOrigin
+
+> 参见：[changeOrigin](https://www.cnblogs.com/zwh0910/p/16785571.html)
+
+进行代理时，host为未代理前的值（前端服务器地址）；设置为`true`后，host变成target的值（代理后的值）
+
+`vue-cli2`与webpack中，该值默认为`false`，但在`vue-cli3`默认为`true`
+
+例如，一个启动在`http://localhost:81`的项目
+
+```js
+//设置跨域
+proxy: {
+	'/api': {
+		target: 'http://localhost:8002',
+		changeOrigin: true
+	}
+}
+```
+
+此时后端获取请求的host为`http://localhost:8002`；如果设置为`false`则为`http://localhost:81`
+
+```java
+@PostMapping("/captcha")
+    public Result codeImg(HttpServletRequest request) throws Exception {
+        String host = request.getHeader("Host");
+        System.out.println(host);
+        return userService.getCaptcha();
+    }
+```
+
+注意：该属性只影响传给后端的值；在前端控制台查看，一直会是`http://localhost:81`
+
 ## 其他
 
 ### 组件的`name`属性
 
-> 参考：https://blog.csdn.net/weixin_39015132/article/details/83573896
+> 参考：[Vue: export default中的name属性到底有啥作用呢？](https://blog.csdn.net/weixin_39015132/article/details/83573896)
 
 作用有三种：
 
