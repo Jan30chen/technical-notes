@@ -24,9 +24,9 @@
 + `import`：因为是动态输出，随时都可以获取最新的引用，无需重复引用
 + `require`：第一次引用后将缓存对象，之后再次的引用都去读取缓存
 
-## import 与 export 的配套使用
+## import & export
 
-### import
+导入
 
 ```js
 import defaultName from 'modules.js';			// 导入默认模板
@@ -40,7 +40,7 @@ import defaultName， * as moduleName from 'modules';
 import 'modules';								// 运行模块中的全局代码，而不导入任何值
 ```
 
-### export
+导出
 
 ```js
 // 命名导出
@@ -62,6 +62,15 @@ export {default} from './other-module'; // 默认导出要加花括号
 export * from ...;	// 导出全部并重定向	
 export { name1, name2, ..., nameN } from ...;
 export { import1 as name1, import2 as name2, ..., nameN } from …;
+```
+
+## require & module.exports
+
+```js
+// a.js，导出
+module.exports = a
+// b.js，导入
+const a = require('./a')
 ```
 
 ## 动态 import
