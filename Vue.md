@@ -556,7 +556,9 @@ multi-page 模式下，为每个 page 配置对应的 Javascript 入口文件
 
 对应[ ` webpack-dev-server`](https://webpack.docschina.org/configuration/dev-server/) 的选项
 
-#### devServer.port
+#### port
+
+设置开发服务器的代理
 
 ##### target
 
@@ -672,6 +674,69 @@ proxy: {
 ```
 
 注意：该属性只影响传给后端的值；在前端控制台查看，一直会是`http://localhost:81`
+
+### lintOnSave
+
+- Type: `boolean` | `'warning'` | `'default'` | `'error'`
+- Default: `'default'`
+
+在开发环境下，保存时是否 lint 代码；需要安装 [`@vue/cli-plugin-eslint`](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint) 
+
+取值效果：
+
++ `false`：不执行 lint
++ `true` 、 `'warning'`：lint 错误 > 编译预警，仅输出警告到命令行
++ `default`：lint 错误 > 编译错误，会导致编译失败
++ `error`：lint 预警/错误 > 编译错误，会导致编译失败
+
+在生产构建中禁用
+
+```js
+lintOnSave: process.env.NODE_ENV !== 'production'
+```
+
+### productionSourceMap
+
+- Type: `boolean`
+- Default: `true`
+
+> source map：存储了代码打包转换后的位置信息，维护了打包前后的代码映射关系；解决打包后代码被格式化，无法debug的问题
+
+生产环境是否启用 source map，可以将其设置为 `false` 以加速生产环境构建。
+
+### configureWebpack
+
++ Type: `Object | Function`
+
+> 参见：[配合 webpack > 简单的配置方式](https://cli.vuejs.org/zh/guide/webpack.html#简单的配置方式)、[webpack4配置](https://v4.webpack.docschina.org/configuration/)
+
+通过对象或函数修改webpack的配置
+
+提供对象，会合并到最终的配置中；
+
+提供函数，接收配置作为参数。函数可以直接修改传入的配置，也可以返回一个修改过的克隆配置版本
+
+#### plugins
+
+Type: `[Plugin]`
+
+数组，用以配置插件
+
+[一些插件接口](https://webpack.docschina.org/plugins/)：
+
++ `ProvidePlugin`方法：加载模块作为全局变量，以便在其他文件中使用
+
+#### externals
+
+Type: `string` `object` `function` `RegExp` `[string, object, function, RegExp]`
+
+阻止将某些`import`的包打包到`bunble`中。转为在使用时，去加载外部依赖。
+
+### chainWebpack
+
++ Type: `Function`
+
+> 参见：[配合 webpack > 链式操作](https://cli.vuejs.org/zh/guide/webpack.html#链式操作-高级)
 
 ## 其他
 

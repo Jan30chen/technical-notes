@@ -1357,12 +1357,12 @@ Number( num_str.slice(0,num_str.indexOf('.')+3) );
 ```js
 (function(){
     // pass;
-})()
+})();
 ```
 
-使用括号包裹匿名函数，再立即调用
+使用括号包裹匿名函数，再立即调用；用来创建私有区域，避免全局变量污染产生
 
-用来创建私有区域，避免全局变量污染产生
+注意：连续使用多个立即执行函数，需要后续`;`，否则后面的函数会被错误作为参数传入上个函数，[参见](https://stackoverflow.com/questions/42036349/uncaught-typeerror-intermediate-value-is-not-a-function)
 
 ## JavaScript-addLoadEvent函数
 
