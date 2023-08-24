@@ -710,7 +710,7 @@ lintOnSave: process.env.NODE_ENV !== 'production'
 
 > 参见：[配合 webpack > 简单的配置方式](https://cli.vuejs.org/zh/guide/webpack.html#简单的配置方式)、[webpack4配置](https://v4.webpack.docschina.org/configuration/)
 
-通过对象或函数修改webpack的配置
+通过对象或函数修改`webpack`的配置
 
 提供对象，会合并到最终的配置中；
 

@@ -11,3 +11,4 @@ series：
 + radius：内外半径
 + center：中心
 + label：标签
++ yAxisIndex：使用第二y轴

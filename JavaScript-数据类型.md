@@ -119,11 +119,11 @@ s2 == s3	// false,不相同
 s1.toString();	// 'Symbol(a)'
 ```
 
-## 四大皆空
+## 空值
 
 ### 概念
 
- JavaScript可以被叫做空值的四个鬼东西，都可以被转化成布尔值`false`：
+ JavaScript可以被叫做空值有四种，都可以被转化成布尔值`false`：
 
 1. null：**null类型**；此处没有对象
 2. undefined：**undefined类型**；尚未定义的对象
