@@ -1472,6 +1472,14 @@ addEventListener(type, listener, useCapture);
 
 **在jQuery中**，回调函数返回 false ，可以同时阻止传播行为 和 阻止默认行为
 
+### 手动派发事件
+
+[EventTarget.dispatchEvent(Event)](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/dispatchEven t) 方法会向指定的事件目标，派发一个事件。从而可以调用该目标上的监听回调事件，此过程为同步：在该方法返回前，监听该事件的回调函数会被执行完毕并返回。
+
+调用该方法是触发事件的最后一步。传参为通过 [`Event()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Event/Event) 构造函数创建的事件对象。
+
+返回值： `event` 中至少有一个回调函数调用了 [`Event.preventDefault()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Event/preventDefault) 方法时，返回`false`，否则为`true`。
+
 ### 与on事件的对比
 
 `addEventListener()`是W3C DOM规范中，提供的注册事件监听器

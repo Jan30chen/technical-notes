@@ -236,6 +236,12 @@ for(let data of arr) {
 + `some`方法，于`return true`语句后结束循环
 + `every`方法，于`return false`语句后结束循环
 
+---
+
+多层循环嵌套时，使用[标记语句](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/label)中断指定循环
+
+使用标记对某个循环语句进行标记，再搭配`break`或`continue`
+
 ## 总结
 
 + 适用`for`循环：遍历内容不发生改变，长度已知且固定的**对象**与**数组**
