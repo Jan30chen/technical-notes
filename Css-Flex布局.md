@@ -50,7 +50,8 @@ Flex容器中默认存在两条轴：
   + flex-end：对齐主轴末端
   + center：居中
   + space-between：均匀排列，但是对齐主轴两端
-  + space-around：均匀排列
+  + space-around：均匀排列，两端间隔为子元素间间隔的一半
+  + space-evenly：均匀排列，两端间隔与子元素间隔相同
 + `align-items`：项目在交叉轴上的对齐
   + stretch：如果项目未设置高度，则拉伸同容器，如果有高度则对齐交叉轴开端
   + flex-start：对齐交叉轴开端

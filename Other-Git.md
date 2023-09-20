@@ -373,3 +373,20 @@ https://www.cnblogs.com/whowhere/p/9334793.html
 
 在远端已经存在`a`分支的情况下，不能建立名为`a/b`形式的分支
 
+### OpenSSL SSL_read: Connection was reset, errno 10054
+
+> 参见：[Git 错误：OpenSSL SSL_read Connection was reset, errno 10054](https://zhuanlan.zhihu.com/p/499986340)
+
+解除SSL认证
+
+```text
+git config --global http.sslVerify "false"
+```
+
+### stash指定文件
+
+> 参见：[git stash 用法总结和注意点](https://www.cnblogs.com/zndxall/p/9586088.html)
+
+1. `add`不需要`stash`的文件进入`stage`区：`git add a.file`
+2. 运行`git stash [-k|--keep-index]`，只会`stash`工作区的文件
+3. 使用`git reset`将`stage`区还原至工作区
