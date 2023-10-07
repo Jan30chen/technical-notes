@@ -1487,13 +1487,13 @@ addEventListener(type, listener, useCapture);
 + 允许为一个事件注册多个监听器
 + 可以选择事件触发阶段：捕获或者冒泡
 + 对任何DOM元素都是有效的，不限于HTML DOM元素
-+ 通过[`removeEventListener`](https://link.juejin.cn/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FAPI%2FEventTarget%2FremoveEventListener)来移除注册的事件；如果挂载匿名函数，则无法移除
++ 通过[`removeEventListener`](https://link.juejin.cn/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FAPI%2FEventTarget%2FremoveEventListener)来<span style="color:red">移除</span>注册的事件；如果挂载匿名函数，则无法移除
 
 `on`事件（如`onclick`）为注册事件监听器的旧方法
 
 + 可以用于js与html标签上
 + 替换该元素已存在的`on`事件，即为同一事件最多只有一个事件
-+ 将该值直接设置为`null`以移除
++ 将该值直接设置为`null`以<span style="color:red">移除</span>
 + DOM 0规范的内容，兼容性好
 
 **说明：**两种方法都默认传入`event`事件，函数内部的`this`指向元素本身（若为箭头函数则指向父级作用域）
