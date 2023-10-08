@@ -367,22 +367,59 @@ scrollBehavior(to, from, savedPosition) {
 
 异步加载组件，只有当访问到`path`时，才加载该组件：
 
-### AMD 异步
-
 ```js
+// AMD 异步
 {
     path: '/home',
 	component: resolve => require(['../home.vue'], resolve),
 }    
-```
-
-### ES 异步
-
-```js
+// ES 异步
 {
     path: '/home',
 	component: import('../home.vue')
-}    
+}  
+```
+
+`component`属性接受一个返回Promise组件的函数
+
+### 组件按组分块
+
+#### webpack
+
+使用魔法注释`/* webpackChunkName: <module-name> */`，将指定的组件打包在同名异步块（chunk）中；
+
+如下面的例子，这些路由将都会被打包到`group-user.chunk.js`中
+
+```js
+const UserDetails = () =>
+  import(/* webpackChunkName: "group-user" */ './UserDetails.vue')
+const UserDashboard = () =>
+  import(/* webpackChunkName: "group-user" */ './UserDashboard.vue')
+const UserProfileEdit = () =>
+  import(/* webpackChunkName: "group-user" */ './UserProfileEdit.vue')
+```
+
+#### Vite
+
+在`vite.config.js`中，定义`rollupOptions`分块
+
+```js
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      // https://rollupjs.org/guide/en/#outputmanualchunks
+      output: {
+        manualChunks: {
+          'group-user': [
+            './src/UserDetails',
+            './src/UserDashboard',
+            './src/UserProfileEdit',
+          ],
+        },
+      },
+    },
+  },
+})
 ```
 
 ## 导航故障

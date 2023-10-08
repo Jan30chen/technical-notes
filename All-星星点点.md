@@ -1319,36 +1319,76 @@ Mozilla/[version] ([system and browser information]) [platform] ([platform detai
 - **浏览器渲染其他补充信息**：我认为各个浏览器为了兼容，这个字段已经没有了实际意义，即 `(KHTML, like Gecko)`。这个字段同样需要用括号括起来。
 - **扩展字段**：这个字段内容最为丰富，主要描述了浏览器信息，以及各个浏览器自己添加的自定义字段等。即 `Chrome/70.0.3538.5 Safari/537.36`。
 
-## JavaScript-精确小数到几位
+## JavaScript-小数位数
 
-### `num.toFixed(n)`
+### 保留位数的方法
 
-+ 优点：快速精确到n位，并**五舍六入**
-+ 缺点：小数位不足时会补充0，如`2=>2.00`
+#### `toFixed`
 
-```js
-0.123.toFixed(2)	// 0.12
-0.125.toFixed(2)	// 0.13
-0.1.toFixed(2)		// 0.10
-```
+使用[`num.toFixed(n)`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed)，传入数字返回<u>字符串类型</u>
 
-### `Math.round(num* 10**n)/10**n`
-
-`round()`函数返回一个更加接近的整数，即不超过0.5的向下取整，超过0.5的向上取整；`10**n`为语法糖，表示10的次方
-
-将小数放大一定位数后，执行`round`取整，再缩小到原先位数
++ 优点：快速精确到n位，并**四舍五入**
++ 缺点：小数位不足时会补充0，如`2 > 2.00`
 
 ```js
-// 保留两位小数，不会四舍五入
-Math.round(number * 100) / 100
+0.1249.toFixed(2)	// "0.12"
+0.125.toFixed(2)	// "0.13"
+0.1.toFixed(2)		// "0.10"（被补齐）
 ```
 
-### 使用字符串
+另：`+`与`-`的优先级低于该方法，所以前置这两个符号后，将会再次得到一个数字类型
 
 ```js
-//	字符串转化，不四舍五入
-Number( num_str.slice(0,num_str.indexOf('.')+3) );
++0.125.toFixed(2)	// 0.13
+-0.125.toFixed(2)	// -0.13
+(-0.125).toFixed(2)	// "-0.13"
 ```
+
+#### 放大后缩小
+
+方法：`Math.round(num* 10**n)/10**n`
+
+说明：将小数放大一定位数后，执行`round`取整，再缩小到原先位数
+
++ [`round()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math/round)函数：整数不变，小数部分**四舍五入**，即`x < 0.5 ? 0 ? 1`
+
++ [`**`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Exponentiation)为幂运算符，`10**n`表示10的n次方，放大缩小该值实现保留n位；
+
+```js
+// 保留两位小数，并且四舍五入
+Math.round(14.114 * 10**2)/10**2	// 14.11
+Math.round(14.115 * 10**2)/10**2	// 14.12
+```
+
+类似使用[`floor()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math/floor)和[`ceil()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil)方法
+
+```js
+Math.floor(14.119 * 10**2)/10**2	// 14.11，始终不进位
+Math.ceil(14.111 * 10**2)/10**2		// 14.12，始终进一位
+```
+
+#### 字符串截取
+
+方法：`Number(num_str.slice(0,num_str.indexOf('.')+n));`
+
+说明：直接转化为字符串，截取小数点后，n长度的字符；需要先将数字转为字符串类型，结果**不四舍五入**
+
+```js
+var num = '20.129', num_str = String(num)
+Number(num_str.slice(0,num_str.indexOf('.')+3))	// 20.12
+```
+
+### 精度丢失
+
+使用放大缩小法，解决精度丢失的问题
+
+```js
+let a = .1, b = .2
+a + b	// 0.30000000000000004
+Math.floor(a * 10**1 + b * 10**1)/10**1	// 0.3
+```
+
+
 
 ## JavaScript-立即执行函数
 
