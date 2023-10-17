@@ -1388,8 +1388,6 @@ a + b	// 0.30000000000000004
 Math.floor(a * 10**1 + b * 10**1)/10**1	// 0.3
 ```
 
-
-
 ## JavaScript-立即执行函数
 
 [IIFE（立即调用函数表达式）](https://developer.mozilla.org/zh-CN/docs/Glossary/立即执行函数表达式)
@@ -2206,7 +2204,7 @@ top.location.href;			// 在顶层页面打开新页面
 
 ## JavaScript-Date
 
-### 新建对象
+### 新建
 
 Date对象的唯一创建方式是使用`new`操作符，如果直接调用则是返回日期字符串
 
@@ -2254,7 +2252,7 @@ new Date(2021, 0)
 
 > 毫秒数：指距离1970年起始的毫秒数
 
-原型方法：
+原型（静态）方法：
 
 + Date.now()：返回当前时间的毫秒数
 + Dae.parse()：解析字符串，并返回毫秒数
@@ -2322,6 +2320,17 @@ date.toUTCString()		// "Mon, 05 Jun 2023 06:25:43 GMT"
 十进制小数转化为二进制时，会发生无限循环，被截取后发生精度丢失；
 
 常见的有：`0.1 + 0.2 = 0.30000000000000004`
+
+## JavaScript-Class
+
+> 参见：[类-MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes)
+
+用于创建对象的模板，实际为“特殊的函数”
+
+关键字：
+
++ [static](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes/static)：定义静态变量或方法；静态方法应该在类本身上调用，而不是类的实例（如`Date.now()`方法）；静态变量只能被静态方法所使用
++ `#`：定义私有类字段；类属性默认是`public`的，前置`#`符号转为`private`；访问该变量也应该带上`#`
 
 # jQuery
 

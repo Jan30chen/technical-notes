@@ -10,7 +10,7 @@
 
 如果应用不是很大，更推荐使用[Store模式](https://cn.vuejs.org/v2/guide/state-management.html#%E7%AE%80%E5%8D%95%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E8%B5%B7%E6%AD%A5%E4%BD%BF%E7%94%A8)，这是类 Flux 状态管理的实现
 
-![flux.png](https://github.com/wangning0/Autumn_Ning_Blog/blob/master/blogs/2016-1-3/flux/pt/flux.png?raw=true)
+<img src="https://github.com/wangning0/Autumn_Ning_Blog/blob/master/blogs/2016-1-3/flux/pt/flux.png?raw=true" alt="flux.png" style="zoom:50%;" />
 
 Flux的核心思想就是**数据和逻辑永远单向流动**
 

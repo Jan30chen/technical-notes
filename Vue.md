@@ -372,11 +372,20 @@ var app=new VUE({
 
 ### 解决
 
+> 参见：[How do I use /deep/ or >>> or ::v-deep in Vue.js?](https://stackoverflow.com/questions/48032006/how-do-i-use-deep-or-or-v-deep-in-vue-js)
+
 使用深度作用选择器：
 
-+ `>>>`：适合CSS文件，对预编译器可能不起作用（less等）
-+ `/deep/`：适用预编译器，上一条的别名
-+ `::v-deep`：同上一条
+注：这些深度选择器，都需要在具有`scoped`属性的样式里使用
+
++ Vue2（2.0~2.6）
+  + `Sass`：`::v-deep`
+  + 非`Sass`：`>>>`
++ Vue3、Vue2.7
+  + 使用伪类`:deep`形式：例如`:deep(.child-class)`
+  + Vue3还有[其他选择器](https://cn.vuejs.org/api/sfc-css-features.html)
+    + `:slotted`：调整父组件以`slot`形式传来部分的样式
+    + `:global`：全局样式，除了新建一个`style`，使用该伪类更方便
 
 ```less
 // 编译前
