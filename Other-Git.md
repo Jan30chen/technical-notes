@@ -390,3 +390,23 @@ git config --global http.sslVerify "false"
 1. `add`不需要`stash`的文件进入`stage`区：`git add a.file`
 2. 运行`git stash [-k|--keep-index]`，只会`stash`工作区的文件
 3. 使用`git reset`将`stage`区还原至工作区
+
+### The requested URL returned error: 403
+
+> 参见：[Git pull 或 push 提示：The requested URL returned error: 403](https://blog.csdn.net/Save_the_baby/article/details/118722282)
+
+使用http方法进行操作时，没有弹出账号密码输入框直接报错403，因为开启了密码缓存
+
+使用如下方法清除：
+
+```bash
+git config --local --unset credential.helper
+git config --global --unset credential.helper
+git config --system --unset credential.helper
+```
+
+此时可以登录后操作，再使用如下命令缓存密码，则之后的操作也不再需要输入密码
+
+```bash
+git config --global credential.helper store
+```
